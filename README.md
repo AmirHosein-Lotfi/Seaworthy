@@ -57,6 +57,8 @@ npx skills add AmirHosein-Lotfi/seaworthy@seaworthy
 
 That installs it as a Claude Code Skill. From then on, just ask "is this safe to deploy?" or "can I push this to prod?" Or don't ask at all. It's written to step in on its own right before anything deploy-shaped happens. See [examples/sample-output-blocked.md](examples/sample-output-blocked.md) and [examples/sample-output-safe.md](examples/sample-output-safe.md) for what a real scan actually prints.
 
+Prefer typing a command over relying on Claude to notice on its own? Copy [commands/sw.md](commands/sw.md) into your project's `.claude/commands/` folder (the installer above only grabs the skill itself, so this one extra step is manual), and you get `/sw` to run a scan on demand, optionally with a path: `/sw ./apps/web`.
+
 ## What it won't do
 
 It's not a penetration test, and it won't catch a vulnerable npm package, a business-logic flaw three steps removed from the patterns above, or anything that requires watching your app run. It's the five-second gut check that would have stopped two very real, very avoidable breaches, nothing grander than that, and it says so out loud at the bottom of every report.
