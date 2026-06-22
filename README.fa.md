@@ -49,15 +49,19 @@
 
 ## کجا به کارت میاد
 
-دقیقاً قبل از هر دیپلوی، هر بار، عین چک کردن آینه‌ی ماشین قبل از خروج از پارکینگ. یه ترمینال توی پروژه‌ت باز کن و بزن:
+دقیقاً قبل از هر دیپلوی، هر بار، عین چک کردن آینه‌ی ماشین قبل از خروج از پارکینگ. یه ترمینال توی پروژه‌ت باز کن و این رو بزن:
 
 ```
-npx skills add AmirHosein-Lotfi/seaworthy@seaworthy
+npx skills add AmirHosein-Lotfi/seaworthy@seaworthy && mkdir -p .claude/commands && curl -fsSL https://raw.githubusercontent.com/AmirHosein-Lotfi/Seaworthy/main/commands/sw.md -o .claude/commands/sw.md
 ```
 
-این یعنی به‌عنوان یک Claude Code Skill نصب شد. از اینجا به بعد فقط بپرس "این برای دیپلوی امنه؟" یا "می‌تونم این رو پوش کنم رو پروداکشن؟" یا حتی نپرس. طوری نوشته شده که خودش قبل از هر اتفاق دیپلوی-مانندی وارد عمل بشه. برای دیدن خروجی واقعی یه اسکن، [examples/sample-output-blocked.md](examples/sample-output-blocked.md) و [examples/sample-output-safe.md](examples/sample-output-safe.md) رو ببین.
+همین، کل نصب همینه. هم خود اسکیل رو نصب می‌کنه، هم یه دستور `/sw` می‌سازه برای هرکسی که ترجیح می‌ده خودش صریح بگه به‌جای اینکه منتظر بمونه Claude خودش بفهمه (`/sw ./apps/web` هم کار می‌کنه اگه بخوای روی یه ساب‌فولدر بزنیش). در هر صورت، بازم می‌تونی بپرسی "این برای دیپلوی امنه؟" یا "می‌تونم این رو پوش کنم رو پروداکشن؟"، یا حتی نپرسی: طوری نوشته شده که خودش قبل از هر اتفاق دیپلوی-مانندی وارد عمل بشه. برای دیدن خروجی واقعی یه اسکن، [examples/sample-output-blocked.md](examples/sample-output-blocked.md) و [examples/sample-output-safe.md](examples/sample-output-safe.md) رو ببین.
 
-ترجیح می‌دی به‌جای اینکه به تشخیص خودکار Claude اعتماد کنی، یه دستور بزنی؟ فایل [commands/sw.md](commands/sw.md) رو توی پوشه‌ی `.claude/commands/` پروژه‌ت کپی کن (نصاب بالا فقط خود اسکیل رو می‌گیره، این یه قدم اضافه‌ی دستیه)، و بعدش `/sw` رو داری برای اجرای اسکن هر وقت خواستی، حتی با یه مسیر دلخواه: `/sw ./apps/web`.
+روی ویندوز با PowerShell، این رو بزن:
+
+```
+npx skills add AmirHosein-Lotfi/seaworthy@seaworthy; New-Item -ItemType Directory -Force .claude/commands | Out-Null; Invoke-WebRequest https://raw.githubusercontent.com/AmirHosein-Lotfi/Seaworthy/main/commands/sw.md -OutFile .claude/commands/sw.md
+```
 
 ## چیکار نمی‌کنه
 

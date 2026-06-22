@@ -49,15 +49,19 @@ Every issue comes with the exact file and line, what an attacker actually gets i
 
 ## Where it helps
 
-Right before you deploy, every time, the same way you'd check your mirrors before pulling out of a parking spot. Open a terminal in your project and say:
+Right before you deploy, every time, the same way you'd check your mirrors before pulling out of a parking spot. Open a terminal in your project and run:
 
 ```
-npx skills add AmirHosein-Lotfi/seaworthy@seaworthy
+npx skills add AmirHosein-Lotfi/seaworthy@seaworthy && mkdir -p .claude/commands && curl -fsSL https://raw.githubusercontent.com/AmirHosein-Lotfi/Seaworthy/main/commands/sw.md -o .claude/commands/sw.md
 ```
 
-That installs it as a Claude Code Skill. From then on, just ask "is this safe to deploy?" or "can I push this to prod?" Or don't ask at all. It's written to step in on its own right before anything deploy-shaped happens. See [examples/sample-output-blocked.md](examples/sample-output-blocked.md) and [examples/sample-output-safe.md](examples/sample-output-safe.md) for what a real scan actually prints.
+That's the whole setup. It installs the skill itself, plus a `/sw` command for anyone who'd rather type something explicit than wait for Claude to notice on its own (`/sw ./apps/web` works too, if you want to point it at a subfolder). Either way, you can also just ask "is this safe to deploy?" or "can I push this to prod?", or don't ask at all: it's written to step in on its own right before anything deploy-shaped happens. See [examples/sample-output-blocked.md](examples/sample-output-blocked.md) and [examples/sample-output-safe.md](examples/sample-output-safe.md) for what a real scan actually prints.
 
-Prefer typing a command over relying on Claude to notice on its own? Copy [commands/sw.md](commands/sw.md) into your project's `.claude/commands/` folder (the installer above only grabs the skill itself, so this one extra step is manual), and you get `/sw` to run a scan on demand, optionally with a path: `/sw ./apps/web`.
+On Windows PowerShell, run this instead:
+
+```
+npx skills add AmirHosein-Lotfi/seaworthy@seaworthy; New-Item -ItemType Directory -Force .claude/commands | Out-Null; Invoke-WebRequest https://raw.githubusercontent.com/AmirHosein-Lotfi/Seaworthy/main/commands/sw.md -OutFile .claude/commands/sw.md
+```
 
 ## What it won't do
 
