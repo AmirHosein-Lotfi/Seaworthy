@@ -1,0 +1,8 @@
+# Fixtures are real git repos on disk (needed so git-history/.gitignore
+# checks have something real to check) but must never be committed as nested
+# repos/gitlinks into this repo — tests/run-fixture-tests.sh re-initializes
+# them on demand if missing, so a fresh clone works without manual setup.
+tests/fixtures/*/.git/
+
+node_modules/
+.DS_Store
